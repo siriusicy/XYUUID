@@ -18,9 +18,9 @@
 
 static NSString *XY_ZeroIdfa = @"00000000-0000-0000-0000-000000000000";
 
-static NSString *STR_XYUUIDForInstall = @"XYUUID-Install";
-static NSString *STR_XYUUIDForKeyChain = @"XYUUID-KeyChain-ServiceDomain";
-static NSString *STR_XYUUIDForKeyChainAndDeviceOrIdfa = @"XYUUID-KeyChain-Device-Idfa";
+static NSString *STR_XYUUIDForInstall = @"SH_XYUUID-Install";
+static NSString *STR_XYUUIDForKeyChain = @"SH_XYUUID-KeyChain-ServiceDomain";
+static NSString *STR_XYUUIDForKeyChainAndDeviceOrIdfa = @"SH_XYUUID-KeyChain-Device-Idfa";
 //static NSString *STR_XYUUIDForKeyChain = base64Decode:@"Y29tLkhvbGF2ZXJzZS5Ib2xhU3RhdGlzdGljYWw=";
 
 @interface XYUUID ()
