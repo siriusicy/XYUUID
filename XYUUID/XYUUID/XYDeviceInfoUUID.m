@@ -22,7 +22,7 @@ static NSString *systemBootTime(){
     
     if( sysctl(mib, 2, &boottime, &len, NULL, 0) < 0 )
     {
-        return @"";
+        return [NSString stringWithFormat:@"%.0f", [[NSDate date] timeIntervalSince1970]];
     }
 //    time_t bsec = boottime.tv_sec / 10000;
     
