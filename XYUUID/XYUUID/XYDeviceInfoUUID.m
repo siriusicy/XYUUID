@@ -24,12 +24,12 @@ static NSString *systemBootTime(){
     {
         return @"";
     }
-    time_t bsec = boottime.tv_sec / 10000;
+//    time_t bsec = boottime.tv_sec / 10000;
     
 //    time_t bsec = 1476249507 / 10000;   //  2016/10/11 13:18:27
 //    time_t bsec = 1476249507 / 10000;   //  2015/10/11 13:18:27
     
-    NSString *bootTime = [NSString stringWithFormat:@"%ld",bsec];
+    NSString *bootTime = [NSString stringWithFormat:@"%ld",boottime.tv_sec];
     
     return bootTime;
 }
