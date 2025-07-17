@@ -36,4 +36,13 @@
 /// 设备UUID，设备唯一标识符
 + (NSString *)uuidForDevice;
 
+#pragma mark -  SH
+
+/// 接口请求时使用,钥匙串存储，卸载应用保持不变,不同bundleId会不一样
++ (NSString *)sh_uuidForKeychain_forRequest;
+
+/// 设备UUID，根据设备信息生成,极小概率会重复
++ (NSString *)sh_uuidForDevice_forBan;
+
+
 @end

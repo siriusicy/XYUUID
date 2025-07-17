@@ -21,6 +21,8 @@ static NSString *XY_ZeroIdfa = @"00000000-0000-0000-0000-000000000000";
 static NSString *STR_XYUUIDForInstall = @"SH_XYUUID-Install";
 static NSString *STR_XYUUIDForKeyChain = @"SH_XYUUID-KeyChain-ServiceDomain";
 static NSString *STR_XYUUIDForKeyChainAndDeviceOrIdfa = @"SH_XYUUID-KeyChain-Device-Idfa";
+static NSString *SH_XYUUIDForKeyChainForRequest = @"SH_uuidForKeychain_forRequest";
+
 //static NSString *STR_XYUUIDForKeyChain = base64Decode:@"Y29tLkhvbGF2ZXJzZS5Ib2xhU3RhdGlzdGljYWw=";
 
 @interface XYUUID ()
@@ -146,5 +148,36 @@ static NSString *STR_XYUUIDForKeyChainAndDeviceOrIdfa = @"SH_XYUUID-KeyChain-Dev
     
     return @"";
 }
+
+
+#pragma mark -  SH
+
+/// 接口请求时使用,钥匙串存储，卸载应用保持不变,不同bundleId会不一样
++ (NSString *)sh_uuidForKeychain_forRequest {
+    NSString *uuid = [XYKeyChain getDataWithServiceDomain:SH_XYUUIDForKeyChainForRequest];
+    if (uuid && ![uuid isEqualToString:@""]) {
+        return uuid;
+    }
+    uuid = [self uuid];
+    [XYKeyChain setData:uuid serviceDomain:SH_XYUUIDForKeyChainForRequest];
+    return uuid;
+}
+
+/// 设备UUID，根据设备信息生成,极小概率会重复
++ (NSString *)sh_uuidForDevice_forBan {
+
+    NSString *idfa = [self uuidForIDFA];
+    if (idfa && ![idfa isEqualToString:@""] && ![idfa isEqualToString:XY_ZeroIdfa]) {
+        return [NSString stringWithFormat:@"fa_%@",idfa];
+    }
+    
+    NSString *deviceInfoUUID = [XYDeviceInfoUUID createDeviceInfoUUID];;
+    if (deviceInfoUUID && ![deviceInfoUUID isEqualToString:@""]) {
+        return [NSString stringWithFormat:@"de_%@",deviceInfoUUID];
+    }
+    
+    return @"";
+}
+
 
 @end

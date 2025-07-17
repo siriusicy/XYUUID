@@ -24,6 +24,7 @@ static NSString *systemBootTime(){
     {
         return @"";
     }
+    // CJ:增加了时间精度,减少重复概率
 //    time_t bsec = boottime.tv_sec / 10000;
     
 //    time_t bsec = 1476249507 / 10000;   //  2016/10/11 13:18:27
